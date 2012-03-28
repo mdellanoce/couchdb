@@ -47,7 +47,8 @@ when "debian", "ubuntu"
   end
 
   if node['platform_version'].to_f >= 10.04
-    compile_flags = "--with-js-lib=/usr/lib/xulrunner-devel-1.9.2.8/lib --with-js-include=/usr/lib/xulrunner-devel-1.9.2.8/include"
+    xulrunner_version = "1.9.2.28"
+    compile_flags = "--with-js-lib=/usr/lib/xulrunner-devel-#{xulrunner_version}/lib --with-js-include=/usr/lib/xulrunner-devel-#{xulrunner_version}/include"
   end
 end
 
