@@ -49,6 +49,18 @@ when "debian", "ubuntu"
   if node['platform_version'].to_f >= 10.04
     xulrunner_version = "1.9.2.28"
     compile_flags = "--with-js-lib=/usr/lib/xulrunner-devel-#{xulrunner_version}/lib --with-js-include=/usr/lib/xulrunner-devel-#{xulrunner_version}/include"
+
+    template "/etc/ld.so.conf.d/xulrunner.conf" do
+      source "xulrunner.conf.erb"
+      mode 0644
+      variables(
+        :xulrunner_version => xulrunner_version
+      )
+    end
+
+    bash "Processing ldconfig" do
+      code "/sbin/ldconfig"
+    end
   end
 end
 
